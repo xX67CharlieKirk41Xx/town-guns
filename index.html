@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futures, made of, virtual insanity~ || fuck u adrev btw dont think i forgot u bitch</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+            background: #000;
+            color: #e6e6e6;
+            line-height: 1.6;
+        }
+
+        .container { display: flex; min-height: 100vh; }
+
+        /* header */
+        .header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 60px;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 1000;
+        }
+
+        .logo { font-size: 18px; font-weight: 600; color: #fff; }
+
+        .header-right { display: flex; align-items: center; gap: 12px; }
+
+        .search-container { position: relative; }
+
+        .search-box {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 8px 12px 8px 36px;
+            color: #e6e6e6;
+            font-size: 14px;
+            width: 240px;
+            transition: all 0.2s ease;
+        }
+        .search-box:focus {
+            outline: none;
+            border-color: #666;
+            background: #000;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 14px;
+        }
+
+        .header-icons { display: flex; gap: 8px; }
+        .icon-btn {
+            width: 32px; height: 32px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            color: #e6e6e6;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+        .icon-btn:hover { background: #333; }
+
+        /* sidebar */
+        .sidebar {
+            width: 280px;
+            background: #000;
+            border-right: 1px solid #333;
+            padding-top: 60px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+        }
+        .sidebar.hidden { transform: translateX(-100%); }
+
+        .nav-item {
+            display: block;
+            padding: 12px 24px;
+            color: #e6e6e6;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+        .nav-item:hover { background: #1a1a1a; color: #fff; }
+        .nav-item.active {
+            background: #1a1a1a;
+            border-left-color: #666;
+            color: #fff;
+        }
+
+        .nav-divider {
+            padding: 12px 24px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            background: #000;
+            cursor: default;
+        }
+
+        /* main content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding-top: 60px;
+            transition: margin-left 0.3s ease;
+        }
+        .main-content.full { margin-left: 0; }
+
+        .content-area { max-width: 900px; padding: 48px; }
+        .page-title {
+            font-size: 48px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+        .page-description {
+            font-size: 18px;
+            color: #999;
+            margin-bottom: 48px;
+            line-height: 1.7;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 32px;
+            margin-top: 64px;
+        }
+
+        .feature-list { list-style: none; margin: 0; padding: 0; }
+        .feature-list .feature-item + .feature-item { margin-top: 16px; }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 24px 0;
+            border-bottom: 1px solid #333;
+        }
+        .feature-item:last-child { border-bottom: none; }
+
+        .feature-icon { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; font-size: 18px; }
+        .feature-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .feature-content p {
+            font-size: 15px;
+            color: #999;
+            line-height: 1.5;
+        }
+
+        /* toc */
+        .toc {
+            position: fixed;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 200px;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 24px;
+        }
+        .toc-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .toc-list { list-style: none; }
+        .toc-item { margin-bottom: 8px; }
+        .toc-link {
+            color: #999;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s ease;
+            display: block;
+            padding: 4px 0;
+        }
+        .toc-link:hover, .toc-link.active { color: #fff; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .content-area > * { animation: fadeInUp 0.6s ease-out; }
+
+        /* pagination buttons */
+        .pagination-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 32px;
+        }
+        .pagination-buttons button {
+            padding: 8px 16px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #e6e6e6;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .pagination-buttons button:disabled {
+            opacity: 0.4;
+            cursor: default;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Futures, made of, virtual insanity~ || fuck u adrev btw dont think i forgot u bitch</div>
+        <div class="header-right">
+            <div class="search-container">
+                <span class="search-icon">⌕</span>
+                <input type="text" class="search-box" placeholder="Search">
+            </div>
+            <div class="header-icons">
+                <button class="icon-btn" id="hamburger">☰</button>
+                <button class="icon-btn">K</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <nav class="sidebar" id="sidebar">
+            <a href="#" class="nav-item active" data-page="assault"><strong>Assault Rifle (AR)</strong></a>
+            <a href="#" class="nav-item" data-page="smg"><strong>Submachine Gun (SMG)</strong></a>
+            <a href="#" class="nav-item" data-page="dmr"><strong>Designated Marksman Rifle (DMR)</strong></a>
+            <a href="#" class="nav-item" data-page="sniper"><strong>Sniper Rifle</strong></a>
+            <a href="#" class="nav-item" data-page="lmg"><strong>Light Machine Gun (LMG)</strong></a>
+            <a href="#" class="nav-item" data-page="shotgun"><strong>Shotgun</strong></a>
+
+            <div class="nav-divider"><strong>Secondary Gun Types</strong></div>
+
+            <a href="#" class="nav-item" data-page="pistol"><strong>Pistol</strong></a>
+            <a href="#" class="nav-item" data-page="revolver"><strong>Revolver</strong></a>
+            <a href="#" class="nav-item" data-page="machinepistol"><strong>Machine Pistol</strong></a>
+        </nav>
+
+        <main class="main-content" id="main-content">
+            <div class="content-area" id="page-content">
+                <h1 class="page-title">bah</h1>
+                <p class="page-description">
+                    site
+                </p>
+            </div>
+        </main>
+
+        <aside class="toc">
+            <h4 class="toc-title"><span>≡</span>this page:</h4>
+            <ul class="toc-list">
+                <li class="toc-item"><a href="#" class="toc-link active">about:</a></li>
+                <li class="toc-item"><a href="#" class="toc-link">information:</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <script type="module">
+        // import your gun data
+        import TOWN_GUNS from './town_guns_with_categories.js'; // make sure this exists
+
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('main-content');
+        const contentArea = document.getElementById('page-content');
+        const hamburger = document.getElementById('hamburger');
+
+        let currentCategory = '';
+        let currentPage = 1;
+        const itemsPerPage = 6;
+
+        // toggle sidebar
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden');
+            mainContent.classList.toggle('full');
+        });
+
+        function renderCategory(category, page = 1) {
+            const guns = Object.entries(TOWN_GUNS)
+                .filter(([name, data]) => data.category.toLowerCase() === category.toLowerCase());
+
+            if (!guns.length) {
+                contentArea.innerHTML = `<h1 class="page-title">${category}</h1><p>No guns found in this category.</p>`;
+                return;
+            }
+
+            const totalPages = Math.ceil(guns.length / itemsPerPage);
+            if (page < 1) page = 1;
+            if (page > totalPages) page = totalPages;
+            currentPage = page;
+
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const gunsToShow = guns.slice(start, end);
+
+            let html = `<h1 class="page-title">${category}</h1>`;
+            html += `<ul class="feature-list">`;
+            for (const [name, stats] of gunsToShow) {
+                html += `
+                <li class="feature-item">
+                    <span class="feature-icon">🔫</span>
+                    <div class="feature-content">
+                        <h3>${name}</h3>
+                        <p>
+                            Damage: ${stats.damage[0]}-${stats.damage[1]}<br>
+                            Range: ${stats.range[0]}-${stats.range[1]}<br>
+                            Fire Rate: ${stats.fire_rate}<br>
+                            Accuracy: ${stats.accuracy}<br>
+                            Capacity: ${stats.capacity}<br>
+                            Recoil: V${stats.vert_recoil} H${stats.hor_recoil}<br>
+                            Head Mult: ${stats.head_mult}, Torso: ${stats.torso_mult}, Limb: ${stats.limb_mult}<br>
+                            Reload: ${stats.reload}
+                        </p>
+                    </div>
+                </li>`;
+            }
+            html += `</ul>`;
+
+            html += `
+                <div class="pagination-buttons">
+                    <button id="prevPage" ${page===1?'disabled':''}>&lt;&lt; previous page</button>
+                    <button id="nextPage" ${page===totalPages?'disabled':''}>next page &gt;&gt;</button>
+                </div>
+            `;
+
+            contentArea.innerHTML = html;
+
+            document.getElementById('prevPage')?.addEventListener('click', () => renderCategory(category, currentPage - 1));
+            document.getElementById('nextPage')?.addEventListener('click', () => renderCategory(category, currentPage + 1));
+
+            // scroll to top of content area
+            contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        // sidebar nav click
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                item.classList.add('active');
+
+                currentCategory = item.getAttribute('data-page');
+                renderCategory(currentCategory, 1);
+            });
+        });
+
+        // render first category on load
+        const firstCategory = document.querySelector('.nav-item.active').getAttribute('data-page');
+        currentCategory = firstCategory;
+        renderCategory(currentCategory, 1);
+
+        // search box width expand
+        const searchBox = document.querySelector('.search-box');
+        searchBox.addEventListener('focus', () => searchBox.style.width = '280px');
+        searchBox.addEventListener('blur', () => { if(!searchBox.value) searchBox.style.width = '240px'; });
+    </script>
+</body>
+</html>
