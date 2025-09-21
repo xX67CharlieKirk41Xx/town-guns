@@ -163,14 +163,15 @@
         .feature-icon { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; font-size: 18px; }
         .feature-content h3 {
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 700;
             color: #fff;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
         .feature-content p {
             font-size: 15px;
             color: #999;
             line-height: 1.5;
+            margin-left: 16px;
         }
 
         /* toc */
@@ -285,7 +286,6 @@
     </div>
 
     <script type="module">
-        // import your gun data
         import TOWN_GUNS from './town_guns_with_categories.js'; // make sure this exists
 
         const sidebar = document.getElementById('sidebar');
@@ -294,7 +294,7 @@
         const hamburger = document.getElementById('hamburger');
 
         let currentCategory = '';
-        let currentPage = 1;
+        let currentPage = {};
         const itemsPerPage = 6;
 
         // toggle sidebar
@@ -315,7 +315,7 @@
             const totalPages = Math.ceil(guns.length / itemsPerPage);
             if (page < 1) page = 1;
             if (page > totalPages) page = totalPages;
-            currentPage = page;
+            currentPage[category] = page;
 
             const start = (page - 1) * itemsPerPage;
             const end = start + itemsPerPage;
@@ -353,12 +353,12 @@
 
             contentArea.innerHTML = html;
 
-            document.getElementById('prevPage')?.addEventListener('click', () => renderCategory(category, currentPage - 1));
-            document.getElementById('nextPage')?.addEventListener('click', () => renderCategory(category, currentPage + 1));
+            document.getElementById('prevPage')?.addEventListener('click', () => renderCategory(category, currentPage[category] - 1));
+            document.getElementById('nextPage')?.addEventListener('click', () => renderCategory(category, currentPage[category] + 1));
 
-            // scroll to top of content area
             contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+
         // sidebar nav click
         document.querySelectorAll('.nav-item').forEach(item => {
             item.addEventListener('click', e => {
@@ -367,7 +367,8 @@
                 item.classList.add('active');
 
                 currentCategory = item.getAttribute('data-page');
-                renderCategory(currentCategory, 1);
+                if (!currentPage[currentCategory]) currentPage[currentCategory] = 1;
+                renderCategory(currentCategory, currentPage[currentCategory]);
             });
         });
 
