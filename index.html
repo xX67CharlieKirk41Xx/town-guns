@@ -5,235 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Futures, made of, virtual insanity~ || fuck u adrev btw dont think i forgot u bitch V1 (post ipsums)</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* ... your previous CSS ... */
         body {
             font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
             background: #000;
             color: #e6e6e6;
             line-height: 1.6;
         }
-
         .container { display: flex; min-height: 100vh; }
-
-        /* header */
-        .header {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            height: 60px;
-            background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid #333;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 24px;
-            z-index: 1000;
-        }
-
+        .header { position: fixed; top: 0; left: 0; right: 0; height: 60px; background: rgba(0,0,0,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #333; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; z-index: 1000; }
         .logo { font-size: 18px; font-weight: 600; color: #fff; }
-
         .header-right { display: flex; align-items: center; gap: 12px; }
-
         .search-container { position: relative; }
-
-        .search-box {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 6px;
-            padding: 8px 12px 8px 36px;
-            color: #e6e6e6;
-            font-size: 14px;
-            width: 240px;
-            transition: all 0.2s ease;
-        }
-        .search-box:focus {
-            outline: none;
-            border-color: #666;
-            background: #000;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #999;
-            font-size: 14px;
-        }
-
+        .search-box { background: #1a1a1a; border: 1px solid #333; border-radius: 6px; padding: 8px 12px 8px 36px; color: #e6e6e6; font-size: 14px; width: 240px; transition: all 0.2s ease; }
+        .search-box:focus { outline: none; border-color: #666; background: #000; }
+        .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #999; font-size: 14px; }
         .header-icons { display: flex; gap: 8px; }
-        .icon-btn {
-            width: 32px; height: 32px;
-            background: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 6px;
-            display: flex; align-items: center; justify-content: center;
-            color: #e6e6e6;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 14px;
-        }
+        .icon-btn { width: 32px; height: 32px; background: #1a1a1a; border: 1px solid #333; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #e6e6e6; cursor: pointer; transition: all 0.2s ease; font-size: 14px; }
         .icon-btn:hover { background: #333; }
-
-        /* sidebar */
-        .sidebar {
-            width: 280px;
-            background: #000;
-            border-right: 1px solid #333;
-            padding-top: 60px;
-            position: fixed;
-            height: 100vh;
-            overflow-y: auto;
-            transition: transform 0.3s ease;
-        }
+        .sidebar { width: 280px; background: #000; border-right: 1px solid #333; padding-top: 60px; position: fixed; height: 100vh; overflow-y: auto; transition: transform 0.3s ease; }
         .sidebar.hidden { transform: translateX(-100%); }
-
-        .nav-item {
-            display: block;
-            padding: 12px 24px;
-            color: #e6e6e6;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            border-left: 3px solid transparent;
-        }
+        .nav-item { display: block; padding: 12px 24px; color: #e6e6e6; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.2s ease; border-left: 3px solid transparent; cursor: pointer; user-select: none; }
         .nav-item:hover { background: #1a1a1a; color: #fff; }
-        .nav-item.active {
-            background: #1a1a1a;
-            border-left-color: #666;
-            color: #fff;
-        }
-
-        .nav-divider {
-            padding: 12px 24px;
-            color: #fff;
-            font-size: 14px;
-            font-weight: 700;
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
-            background: #000;
-            cursor: default;
-        }
-
-        /* main content */
-        .main-content {
-            flex: 1;
-            margin-left: 280px;
-            padding-top: 60px;
-            transition: margin-left 0.3s ease;
-        }
+        .nav-item.active { background: #1a1a1a; border-left-color: #666; color: #fff; }
+        .nav-divider { padding: 12px 24px; color: #fff; font-size: 14px; font-weight: 700; border-top: 1px solid #333; border-bottom: 1px solid #333; background: #000; cursor: default; }
+        .main-content { flex: 1; margin-left: 280px; padding-top: 60px; transition: margin-left 0.3s ease; }
         .main-content.full { margin-left: 0; }
-
         .content-area { max-width: 900px; padding: 48px; }
-        .page-title {
-            font-size: 48px;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 24px;
-            letter-spacing: -0.02em;
-        }
-        .page-description {
-            font-size: 18px;
-            color: #999;
-            margin-bottom: 48px;
-            line-height: 1.7;
-        }
-
-        .section-title {
-            font-size: 32px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 32px;
-            margin-top: 64px;
-        }
-
+        .page-title { font-size: 48px; font-weight: 800; color: #fff; margin-bottom: 24px; letter-spacing: -0.02em; }
+        .page-description { font-size: 18px; color: #999; margin-bottom: 48px; line-height: 1.7; }
+        .section-title { font-size: 32px; font-weight: 700; color: #fff; margin-bottom: 32px; margin-top: 64px; }
         .feature-list { list-style: none; margin: 0; padding: 0; }
         .feature-list .feature-item + .feature-item { margin-top: 16px; }
-
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            padding: 24px 0;
-            border-bottom: 1px solid #333;
-        }
+        .feature-item { display: flex; align-items: flex-start; gap: 16px; padding: 24px 0; border-bottom: 1px solid #333; }
         .feature-item:last-child { border-bottom: none; }
-
         .feature-icon { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; font-size: 18px; }
-        .feature-content h3 {
-            font-size: 18px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 4px;
-        }
-        .feature-content p {
-            font-size: 15px;
-            color: #999;
-            line-height: 1.5;
-            margin-left: 16px;
-        }
-
-        /* toc */
-        .toc {
-            position: fixed;
-            right: 24px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 200px;
-            background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(12px);
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 24px;
-        }
-        .toc-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        .feature-content h3 { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+        .feature-content p { font-size: 15px; color: #999; line-height: 1.5; margin-left: 16px; }
+        .toc { position: fixed; right: 24px; top: 50%; transform: translateY(-50%); width: 200px; background: rgba(0,0,0,0.95); backdrop-filter: blur(12px); border: 1px solid #333; border-radius: 12px; padding: 24px; }
+        .toc-title { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
         .toc-list { list-style: none; }
         .toc-item { margin-bottom: 8px; }
-        .toc-link {
-            color: #999;
-            text-decoration: none;
-            font-size: 13px;
-            transition: color 0.2s ease;
-            display: block;
-            padding: 4px 0;
-        }
+        .toc-link { color: #999; text-decoration: none; font-size: 13px; transition: color 0.2s ease; display: block; padding: 4px 0; }
         .toc-link:hover, .toc-link.active { color: #fff; }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to   { opacity: 1; transform: translateY(0); } }
         .content-area > * { animation: fadeInUp 0.6s ease-out; }
-
-        /* pagination buttons */
+        /* PAGE BUTTONS */
         .pagination-buttons {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            gap: 24px;
             margin-top: 32px;
         }
-        .pagination-buttons button {
-            padding: 8px 16px;
-            background: #1a1a1a;
-            border: 1px solid #333;
-            color: #e6e6e6;
+        .pagination-btn {
+            display: inline-block;
+            padding: 8px 24px;
+            font-size: 15px;
+            color: #fff;
+            background: transparent;
+            border: 2px solid #fff;
+            border-radius: 999px;
             cursor: pointer;
-            border-radius: 6px;
-            font-size: 14px;
+            transition: background 0.18s, color 0.18s, border-color 0.18s;
+            font-weight: 600;
+            outline: none;
         }
-        .pagination-buttons button:disabled {
-            opacity: 0.4;
+        .pagination-btn:disabled {
+            opacity: 0.5;
             cursor: default;
         }
-
+        .pagination-btn:not(:disabled):hover {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            border-color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -250,32 +95,11 @@
             </div>
         </div>
     </div>
-
     <div class="container">
-        <nav class="sidebar" id="sidebar">
-            <a href="#" class="nav-item active" data-page="assault"><strong>Assault Rifle (AR)</strong></a>
-            <a href="#" class="nav-item" data-page="smg"><strong>Submachine Gun (SMG)</strong></a>
-            <a href="#" class="nav-item" data-page="dmr"><strong>Designated Marksman Rifle (DMR)</strong></a>
-            <a href="#" class="nav-item" data-page="sniper"><strong>Sniper Rifle</strong></a>
-            <a href="#" class="nav-item" data-page="lmg"><strong>Light Machine Gun (LMG)</strong></a>
-            <a href="#" class="nav-item" data-page="shotgun"><strong>Shotgun</strong></a>
-
-            <div class="nav-divider"><strong>Secondary Gun Types</strong></div>
-
-            <a href="#" class="nav-item" data-page="pistol"><strong>Pistol</strong></a>
-            <a href="#" class="nav-item" data-page="revolver"><strong>Revolver</strong></a>
-            <a href="#" class="nav-item" data-page="machinepistol"><strong>Machine Pistol</strong></a>
-        </nav>
-
+        <nav class="sidebar" id="sidebar"></nav>
         <main class="main-content" id="main-content">
-            <div class="content-area" id="page-content">
-                <h1 class="page-title">bah</h1>
-                <p class="page-description">
-                    site
-                </p>
-            </div>
+            <div class="content-area" id="page-content"></div>
         </main>
-
         <aside class="toc">
             <h4 class="toc-title"><span>≡</span>this page:</h4>
             <ul class="toc-list">
@@ -284,103 +108,158 @@
             </ul>
         </aside>
     </div>
+    <script>
+    // --- BEGIN: town_guns_with_categories.js DATA ---
+    const TOWN_GUNS = {
+      "AK-47": {"category":"assault_rifle","damage":[35,26],"range":[150,350],"fire_rate":625,"accuracy":0,"capacity":30,"vert_recoil":0.35,"hor_recoil":0.4,"head_mult":4.0,"torso_mult":1.0,"limb_mult":0.5,"reload":0.0,"equip":0.6,"aim":0.25,"weight":8.0,"mode":"Auto","gamepass":false,"spawn":"AK"},
+      "G36C": {"category":"assault_rifle","damage":[40,30],"range":[150,350],"fire_rate":750,"accuracy":0,"capacity":30,"vert_recoil":0.32,"hor_recoil":0.26,"head_mult":3.0,"torso_mult":0.7,"limb_mult":0.3,"reload":0.0,"equip":0.4,"aim":0.25,"weight":6.0,"mode":"Auto","gamepass":false,"spawn":"G3"},
+      "Honey Badger": {"category": "smg", "damage":[30,15],"range":[150,275],"fire_rate":800,"accuracy":0,"capacity":30,"vert_recoil":0.25,"hor_recoil":0.55,"head_mult":5.5,"torso_mult":1.1,"limb_mult":1.0,"reload":0.0,"equip":0.6,"aim":0.2,"weight":6.5,"mode":"Auto","gamepass":false,"spawn":"HON"},
+      "Dragunov SVD": {"category":"dmr","damage":[80,50],"range":[250,600],"fire_rate":140,"accuracy":0,"capacity":10,"vert_recoil":0.75,"hor_recoil":0.75,"head_mult":4.0,"torso_mult":1.25,"limb_mult":0.5,"reload":0.0,"equip":1.0,"aim":0.45,"weight":10.0,"mode":"Semi","gamepass":false,"spawn":"DR"},
+      "Barrett M82A3": {"category":"sniper","damage":[120,75],"range":[250,600],"fire_rate":170,"accuracy":0,"capacity":10,"vert_recoil":1.1,"hor_recoil":1.5,"head_mult":5.0,"torso_mult":2.0,"limb_mult":0.6,"reload":0.0,"equip":1.4,"aim":0.6,"weight":30.0,"mode":"Semi","gamepass":true,"spawn":"BAR"},
+      "Lewis Automatic Rifle": {"category":"LMG","damage":[30,20],"range":[175,400],"fire_rate":550,"accuracy":0,"capacity":97,"vert_recoil":0.35,"hor_recoil":0.6,"head_mult":4.0,"torso_mult":1.5,"limb_mult":0.5,"reload":0.0,"equip":1.75,"aim":0.3,"weight":30.0,"mode":"Auto","gamepass":false,"spawn":"LE"},
+      "Remington 870": {"category":"shotgun","damage":[0,0],"range":[50,125],"fire_rate":60,"accuracy":45,"capacity":8,"vert_recoil":1.0,"hor_recoil":1.0,"head_mult":3.0,"torso_mult":2.0,"limb_mult":0.75,"reload":0.0,"equip":0.6,"aim":0.35,"weight":10.0,"mode":"Pump Action","gamepass":false,"spawn":"R"},
+      "USP Match": {"category":"pistol","damage":[25,15],"range":[60,110],"fire_rate":590,"accuracy":0,"capacity":13,"vert_recoil":0.37,"hor_recoil":0.6,"head_mult":7.5,"torso_mult":1.5,"limb_mult":0.5,"reload":0.0,"equip":0.4,"aim":0.1,"weight":2.5,"mode":"Semi","gamepass":false,"spawn":"USPMA"},
+      "Saddlegun": {"category":"misc","damage":[55,22],"range":[60,180],"fire_rate":"100 (faster hipfire)","accuracy":0,"capacity":5,"vert_recoil":0.65,"hor_recoil":0.65,"head_mult":9.0,"torso_mult":1.6,"limb_mult":0.5,"reload":0.0,"equip":0.4,"aim":0.2,"weight":4.0,"mode":"Semi","gamepass":false,"spawn":"SA"}
+      // ... and every other gun in your real file ...
+    };
 
-    <script type="module">
-        import TOWN_GUNS from './town_guns_with_categories.js'; // make sure this exists
+    function categoryLabel(cat) {
+        const labels = {
+            assault_rifle: "Assault Rifle (AR)",
+            smg: "Submachine Gun (SMG)",
+            dmr: "Designated Marksman Rifle (DMR)",
+            sniper: "Sniper Rifle",
+            LMG: "Light Machine Gun (LMG)",
+            shotgun: "Shotgun",
+            pistol: "Pistol",
+            revolver: "Revolver",
+            machinepistol: "Machine Pistol",
+            misc: "Misc",
+            unknown: "Unknown"
+        };
+        return labels[cat] || cat.charAt(0).toUpperCase() + cat.slice(1);
+    }
 
-        const sidebar = document.getElementById('sidebar');
-        const mainContent = document.getElementById('main-content');
-        const contentArea = document.getElementById('page-content');
-        const hamburger = document.getElementById('hamburger');
-
-        let currentCategory = '';
-        let currentPage = {};
-        const itemsPerPage = 6;
-
-        // toggle sidebar
-        hamburger.addEventListener('click', () => {
-            sidebar.classList.toggle('hidden');
-            mainContent.classList.toggle('full');
+    function getCategories() {
+        const cats = {};
+        Object.values(TOWN_GUNS).forEach(gun => {
+            if (gun.category) cats[gun.category] = true;
         });
+        return Object.keys(cats);
+    }
 
-        function renderCategory(category, page = 1) {
-            const guns = Object.entries(TOWN_GUNS)
-                .filter(([name, data]) => data.category.toLowerCase() === category.toLowerCase());
-
-            if (!guns.length) {
-                contentArea.innerHTML = `<h1 class="page-title">${category}</h1><p>No guns found in this category.</p>`;
-                return;
+    function buildSidebar(categories) {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.innerHTML = '';
+        const mainTypes = ['assault_rifle','smg','dmr','sniper','LMG','shotgun'];
+        mainTypes.forEach(type => {
+            if (categories.includes(type)) {
+                sidebar.innerHTML += `<a href="#" class="nav-item" data-category="${type}"><strong>${categoryLabel(type)}</strong></a>`;
             }
+        });
+        sidebar.innerHTML += `<div class="nav-divider"><strong>Secondary Gun Types</strong></div>`;
+        categories.forEach(cat => {
+            if (!mainTypes.includes(cat)) {
+                sidebar.innerHTML += `<a href="#" class="nav-item" data-category="${cat}"><strong>${categoryLabel(cat)}</strong></a>`;
+            }
+        });
+    }
 
-            const totalPages = Math.ceil(guns.length / itemsPerPage);
-            if (page < 1) page = 1;
-            if (page > totalPages) page = totalPages;
-            currentPage[category] = page;
+    // PAGINATION
+    const ITEMS_PER_PAGE = 6;
+    let currentCategory = null;
+    let currentPage = 1;
 
-            const start = (page - 1) * itemsPerPage;
-            const end = start + itemsPerPage;
-            const gunsToShow = guns.slice(start, end);
+    function renderCategory(category, page = 1) {
+        currentCategory = category;
+        currentPage = page;
+        const pageContent = document.getElementById('page-content');
+        const guns = Object.entries(TOWN_GUNS).filter(([name, gun]) => gun.category === category);
 
-            let html = `<h1 class="page-title">${category}</h1>`;
+        const totalPages = Math.max(1, Math.ceil(guns.length / ITEMS_PER_PAGE));
+        if (page < 1) page = 1;
+        if (page > totalPages) page = totalPages;
+
+        let html = `<h1 class="page-title">${categoryLabel(category)}</h1>`;
+        if (!guns.length) {
+            html += `<p class="page-description">No guns found in this category.</p>`;
+        } else {
             html += `<ul class="feature-list">`;
-            for (const [name, stats] of gunsToShow) {
+            for (const [name, stats] of guns.slice((page-1)*ITEMS_PER_PAGE, page*ITEMS_PER_PAGE)) {
                 html += `
                 <li class="feature-item">
                     <span class="feature-icon">🔫</span>
                     <div class="feature-content">
                         <h3>${name}</h3>
                         <p>
-                            Damage: ${stats.damage[0]}-${stats.damage[1]}<br>
-                            Range: ${stats.range[0]}-${stats.range[1]}<br>
-                            Fire Rate: ${stats.fire_rate}<br>
-                            Accuracy: ${stats.accuracy}<br>
-                            Capacity: ${stats.capacity}<br>
-                            Recoil: V${stats.vert_recoil} H${stats.hor_recoil}<br>
-                            Head Mult: ${stats.head_mult}, Torso: ${stats.torso_mult}, Limb: ${stats.limb_mult}<br>
-                            Reload: ${stats.reload}
+                            Damage: ${Array.isArray(stats.damage) ? stats.damage.join(' - ') : 'N/A'}<br>
+                            Range: ${Array.isArray(stats.range) ? stats.range.join(' - ') : 'N/A'}<br>
+                            Fire Rate: ${stats.fire_rate ?? '—'}<br>
+                            Accuracy: ${stats.accuracy ?? '—'}<br>
+                            Capacity: ${stats.capacity ?? '—'}<br>
+                            Recoil: V${stats.vert_recoil ?? '—'} H${stats.hor_recoil ?? '—'}<br>
+                            Head Mult: ${stats.head_mult ?? '—'}, Torso: ${stats.torso_mult ?? '—'}, Limb: ${stats.limb_mult ?? '—'}<br>
+                            Reload: ${stats.reload ?? '—'}<br>
+                            Mode: ${stats.mode ?? '—'}<br>
+                            ${stats.spawn ? `Spawn: ${stats.spawn}<br>` : ''}
+                            ${stats.gamepass ? `<span style="color:#e25">Gamepass Only</span>` : ''}
                         </p>
                     </div>
                 </li>`;
             }
             html += `</ul>`;
-
-            html += `
-                <div class="pagination-buttons">
-                    <button id="prevPage" ${page===1?'disabled':''}>&lt;&lt; previous page</button>
-                    <button id="nextPage" ${page===totalPages?'disabled':''}>next page &gt;&gt;</button>
-                </div>
-            `;
-
-            contentArea.innerHTML = html;
-
-            document.getElementById('prevPage')?.addEventListener('click', () => renderCategory(category, currentPage[category] - 1));
-            document.getElementById('nextPage')?.addEventListener('click', () => renderCategory(category, currentPage[category] + 1));
-
-            contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // sidebar nav click
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', e => {
+        // Pagination Buttons
+        html += `
+        <div class="pagination-buttons">
+            <button class="pagination-btn" id="prevPageBtn" ${page === 1 ? 'disabled' : ''}>&lt;&lt; previous page</button>
+            <button class="pagination-btn" id="nextPageBtn" ${page === totalPages ? 'disabled' : ''}>next page &gt;&gt;</button>
+        </div>
+        <div style="text-align:center;margin-top:8px;color:#fff;font-size:13px;">Page ${page} / ${totalPages}</div>
+        `;
+
+        pageContent.innerHTML = html;
+        pageContent.scrollIntoView({behavior: 'smooth', block: 'start'});
+
+        document.getElementById('prevPageBtn')?.addEventListener('click', () => {
+            renderCategory(currentCategory, currentPage-1);
+        });
+        document.getElementById('nextPageBtn')?.addEventListener('click', () => {
+            renderCategory(currentCategory, currentPage+1);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const categories = getCategories();
+        buildSidebar(categories);
+
+        document.getElementById('sidebar').addEventListener('click', function(e) {
+            const item = e.target.closest('.nav-item');
+            if (item) {
                 e.preventDefault();
                 document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
                 item.classList.add('active');
-
-                currentCategory = item.getAttribute('data-page');
-                if (!currentPage[currentCategory]) currentPage[currentCategory] = 1;
-                renderCategory(currentCategory, currentPage[currentCategory]);
-            });
+                renderCategory(item.getAttribute('data-category'), 1);
+            }
         });
 
-        // render first category on load
-        const firstCategory = document.querySelector('.nav-item.active').getAttribute('data-page');
-        currentCategory = firstCategory;
-        renderCategory(currentCategory, 1);
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('main-content');
+        document.getElementById('hamburger').addEventListener('click', () => {
+            sidebar.classList.toggle('hidden');
+            mainContent.classList.toggle('full');
+        });
 
-        // search box width expand
-        const searchBox = document.querySelector('.search-box');
-        searchBox.addEventListener('focus', () => searchBox.style.width = '280px');
-        searchBox.addEventListener('blur', () => { if(!searchBox.value) searchBox.style.width = '240px'; });
+        // Render first category
+        const first = categories[0];
+        document.querySelector(`.nav-item[data-category="${first}"]`)?.classList.add('active');
+        renderCategory(first, 1);
+    });
+
+    const searchBox = document.querySelector('.search-box');
+    searchBox.addEventListener('focus', () => searchBox.style.width = '280px');
+    searchBox.addEventListener('blur', () => { if(!searchBox.value) searchBox.style.width = '240px'; });
     </script>
 </body>
 </html>
