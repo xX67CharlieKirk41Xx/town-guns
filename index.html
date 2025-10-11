@@ -72,6 +72,15 @@
             color: #fff;
             border-color: #fff;
         }
+                .toc-content {
+            margin-top: 24px;
+            color: #ccc;
+            font-size: 14px;
+            min-height: 60px;
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+        .toc-content.fade { opacity: 0; }
     </style>
 </head>
 <body>
@@ -95,11 +104,13 @@
         </main>
         <aside class="toc">
             <h4 class="toc-title"><span>≡</span>this page:</h4>
-            <ul class="toc-list">
-                <li class="toc-item"><a href="#" class="toc-link active">about:</a></li>
-                <li class="toc-item"><a href="#" class="toc-link">information:</a></li>
+            <ul class="toc-list" id="toc-list">
+                <li class="toc-item"><a href="#" class="toc-link active" data-toc="about">about:</a></li>
+                <li class="toc-item"><a href="#" class="toc-link" data-toc="this">this page:</a></li>
+                <li class="toc-item"><a href="#" class="toc-link" data-toc="information">information:</a></li>
             </ul>
-        </aside>
+            <div id="toc-content" class="toc-content"></div>
+</aside>
     </div>
     <script>
     // the big data....
@@ -353,7 +364,7 @@
         "gamepass": false,
         "spawn": "B"
     },
-    "CheyTac M200": {
+    "Intervention": {
         "category": "sniper",
         "damage": [
         100,
@@ -377,7 +388,7 @@
         "weight": 30.0,
         "mode": "Bolt Action",
         "gamepass": false,
-        "spawn": "CH"
+        "spawn": "INT"
     },
     "Classic Pistol": {
         "category": "pistol",
@@ -676,11 +687,11 @@
         "fire_rate": 480,
         "accuracy": 0,
         "capacity": 20,
-        "vert_recoil": 0.5,
-        "hor_recoil": 0.2,
+        "vert_recoil": 0.6,
+        "hor_recoil": 0.25,
         "head_mult": 4.0,
         "torso_mult": 0.9,
-        "limb_mult": 0.8,
+        "limb_mult": 0.55,
         "reload": 0.0,
         "equip": 0.6,
         "aim": 0.3,
@@ -748,17 +759,17 @@
         15
         ],
         "range": [
-        150,
+        130,
         275
         ],
         "fire_rate": 800,
-        "accuracy": 0,
+        "accuracy": 50,
         "capacity": 30,
         "vert_recoil": 0.25,
-        "hor_recoil": 0.55,
-        "head_mult": 5.5,
+        "hor_recoil": 0.45,
+        "head_mult": 4,
         "torso_mult": 1.1,
-        "limb_mult": 1.0,
+        "limb_mult": 0.8,
         "reload": 0.0,
         "equip": 0.6,
         "aim": 0.2,
@@ -1106,7 +1117,7 @@
         "spawn": "M1G"
     },
     "M16A2": {
-        "category": "unknown",
+        "category": "assault_rifle",
         "damage": [
         20,
         16
@@ -1115,10 +1126,10 @@
         130,
         375
         ],
-        "fire_rate": 750,
+        "fire_rate": 800,
         "accuracy": 0,
         "capacity": 20,
-        "vert_recoil": 0.28,
+        "vert_recoil": 0.29,
         "hor_recoil": 0.36,
         "head_mult": 6.0,
         "torso_mult": 1.7,
@@ -1707,11 +1718,11 @@
         "category": "smg",
         "damage": [
         27,
-        11
+        21
         ],
         "range": [
-        75,
-        140
+        125,
+        270
         ],
         "fire_rate": 910,
         "accuracy": 0,
@@ -1885,7 +1896,7 @@
         "gamepass": false,
         "spawn": "R7"
     },
-    "Remington 870": {
+    "M870": {
         "category": "shotgun",
         "damage": [
         0,
@@ -1909,7 +1920,7 @@
         "weight": 10.0,
         "mode": "Pump Action",
         "gamepass": false,
-        "spawn": "R"
+        "spawn": "M8"
     },
     "RFB": {
         "category": "dmr",
@@ -1948,15 +1959,15 @@
         400
         ],
         "fire_rate": 600,
-        "accuracy": 0,
+        "accuracy": 140,
         "capacity": 45,
         "vert_recoil": 0.3,
         "hor_recoil": 0.25,
-        "head_mult": 4.5,
-        "torso_mult": 0.9,
+        "head_mult": 4.0,
+        "torso_mult": 1.0,
         "limb_mult": 0.5,
         "reload": 0.0,
-        "equip": 0.6,
+        "equip": 0.75,
         "aim": 0.3,
         "weight": 16.0,
         "mode": "Auto",
@@ -1989,7 +2000,7 @@
         "gamepass": false,
         "spawn": "RPK-"
     },
-    "Ruger MK2": {
+    "RMK2": {
         "category": "pistol",
         "damage": [
         6,
@@ -2013,7 +2024,7 @@
         "weight": 3.0,
         "mode": "Semi",
         "gamepass": false,
-        "spawn": "RU"
+        "spawn": "RM"
     },
     "Saddlegun": {
         "category": "misc",
@@ -2070,8 +2081,8 @@
     "SCAR-H": {
         "category": "assault_rifle",
         "damage": [
-        40,
-        30
+        45,
+        33
         ],
         "range": [
         0,
@@ -2082,9 +2093,9 @@
         "capacity": 20,
         "vert_recoil": 0.35,
         "hor_recoil": 0.57,
-        "head_mult": 4.0,
-        "torso_mult": 1.4,
-        "limb_mult": 0.75,
+        "head_mult": 3.56,
+        "torso_mult": 1.24,
+        "limb_mult": 0.67,
         "reload": 0.0,
         "equip": 0.6,
         "aim": 0.35,
@@ -2345,7 +2356,7 @@
         "hor_recoil": 0.3,
         "head_mult": 5.0,
         "torso_mult": 1.5,
-        "limb_mult": 0.5,
+        "limb_mult": 0.8,
         "reload": 0.0,
         "equip": 0.4,
         "aim": 0.25,
@@ -2566,6 +2577,7 @@
     }
 
     // PAGINATION
+    // PAGINATION
     const ITEMS_PER_PAGE = 6;
     let currentCategory = null;
     let currentPage = 1;
@@ -2573,8 +2585,13 @@
         currentCategory = category;
         currentPage = page;
         const pageContent = document.getElementById('page-content');
-
-        // page handlker
+        // Update ToC content when changing main page
+        const activeToc = document.querySelector('.toc-link.active');
+        updateTocContent(
+            activeToc ? activeToc.getAttribute('data-toc') : "about",
+            currentCategory
+        );
+        // page handler
         if (category === "information") {
             const mainTypes = ['assault_rifle','smg','dmr','sniper','LMG','shotgun'];
             const categories = getCategories();
@@ -2614,10 +2631,10 @@
                 <div class="page-description">what i have to do:</div>
                 <ul class="feature-list">
                     <li class="feature-item">some eastereggs</li>
-                    <li class="feature-item">improve page swappers</li>
-                    <li class="feature-item">improve hamburger menu</li>
+                    <li class="feature-item">improve page swappers (DONE) </li>
+                    <li class="feature-item">improve hamburger menu (DONE)</li>
                     <li class="feature-item">make the searchbar work</li>
-                    <li class="feature-item">rape and murder dax</li>
+                    <li class="feature-item"></li>
                 </ul>
             `;
             pageContent.scrollIntoView({behavior: 'smooth', block: 'start'});
@@ -2631,6 +2648,7 @@
                     <li class="feature-item">- day 1: made the general website and the gun list, still needs porting</li>
                     <li class="feature-item">- day 2: ported the gun list to the website, added next page button</li>
                     <li class="feature-item">- day 3: implemented the to-do and progress lists (TODAY AS OF NOW (9/22/2025) IS DAY 3). LATER -- GMT+0 3:18 9/22/2025: implemented an introduction page</li>
+                    <li class="feature-item">- day 4: made the info and stuff work (TODAY AS OF NOW (10/11/2025) IS DAY 4). LATER -- GMT+0 6:33 10/11/2025: resumed work on the website </li>
                 </ul>
             `;
             pageContent.scrollIntoView({behavior: 'smooth', block: 'start'});
@@ -2643,8 +2661,36 @@
         if (page < 1) page = 1;
         if (page > totalPages) page = totalPages;
         let html = `<h1 class="page-title">${categoryLabel(category)}</h1>`;
+
+        // *** new dropdowns start here ***
+        html += `
+        <div class="category-dropdowns">
+            <details class="dropdown-block">
+                <summary>about:</summary>
+                <div class="dropdown-content">
+                    <p>you're currently at the ${categoryLabel(category)} category.</p>
+                </div>
+            </details>
+
+            <details class="dropdown-block">
+                <summary>this page:</summary>
+                <div class="dropdown-content">
+                    <p>lists all info for ${categoryLabel(category)}s</p>
+                </div>
+            </details>
+
+            <details class="dropdown-block">
+                <summary>information:</summary>
+                <div class="dropdown-content">
+                    <p>${categoryLabel(category)}s are good</p>
+                </div>
+            </details>
+        </div>
+        `;
+        // *** new dropdowns end here ***
+
         if (!guns.length) {
-            html += `<p class="page-description">No guns found in this category.</p>`;
+            html += `<p class="page-description">no guns found in this category!</p>`;
         } else {
             html += `<ul class="feature-list">`;
             for (const [name, stats] of guns.slice((page-1)*ITEMS_PER_PAGE, page*ITEMS_PER_PAGE)) {
@@ -2664,7 +2710,7 @@
                             Reload: ${stats.reload ?? '—'}<br>
                             Mode: ${stats.mode ?? '—'}<br>
                             ${stats.spawn ? `Spawn: ${stats.spawn}<br>` : ''}
-                            ${stats.gamepass ? `<span style="color:#e25">Gamepass Only</span>` : ''}
+                            ${stats.gamepass ? `<span style="color:#e25">gamepass only</span>` : ''}
                         </p>
                     </div>
                 </li>`;
@@ -2674,8 +2720,8 @@
         // buttons for pages
         html += `
         <div class="pagination-buttons" style="margin-top:48px;">
-            <button class="pagination-btn" id="prevPageBtn" ${page === 1 ? 'disabled' : ''}>&lt;&lt; previous page</button>
-            <button class="pagination-btn" id="nextPageBtn" ${page === totalPages ? 'disabled' : ''}>next page &gt;&gt;</button>
+            <button class="pagination-btn" id="prevPageBtn" style="width:180px;" ${page === 1 ? 'disabled' : ''}>&lt;&lt; previous page</button>
+            <button class="pagination-btn" id="nextPageBtn" style="width:180px;" ${page === totalPages ? 'disabled' : ''}>next page &gt;&gt;</button>
         </div>
         <div style="text-align:center;margin-top:8px;color:#fff;font-size:13px;">Page ${page} / ${totalPages}</div>
         `;
@@ -2707,13 +2753,118 @@
             sidebar.classList.toggle('hidden');
             mainContent.classList.toggle('full');
         });
-        // rendering first page (information)
+        // render first page
         document.querySelector(`.nav-item[data-category="information"]`)?.classList.add('active');
         renderCategory("information", 1);
     });
     const searchBox = document.querySelector('.search-box');
     searchBox.addEventListener('focus', () => searchBox.style.width = '280px');
     searchBox.addEventListener('blur', () => { if(!searchBox.value) searchBox.style.width = '240px'; });
+        // --- ToC handler ---
+    function updateTocContent(tocType, category) {
+        const tocContent = document.getElementById('toc-content');
+        if (tocType === 'about') {
+            tocContent.innerHTML = `<strong>About:</strong> <br>this is the about section for <b>${categoryLabel(category)}</b>.<br> all guns are good if used right`;
+        } else if (tocType === 'this') {
+            //the summary of the page
+            tocContent.innerHTML = `<strong>This page:</strong> <br>stats and info for <b>${categoryLabel(category)}</b>.`;
+        } else if (tocType === 'information') {
+            tocContent.innerHTML = `<strong>Information:</strong> <br>this site lists all guns in town!.`;
+        }
+    }
+
+    // set default on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        updateTocContent('about', currentCategory || "information");
+    });
+
+    // listen for toc link clicks (deselect if already active)
+    const TOC_TEXTS = {
+        about: {
+            'assault_rifle': `assault rifles are good for all types of engagements, my personal favorite is the M4 Carbine or SOPMOD.`,
+            'shotgun': `shotguns are good for camping close quarters, and with the right modifications, can be effective at mid-range.`,
+            'dmr': `DMRs can be used for mid-long range engagemenets, and can be used in short aswell. they're pretty good.`,
+            'smg': `SMGs are really good for cqb and midrange, when provided with the right attachments. they hvae a high fire rate and are lightweight.`,
+            'sniper': `the snipers only purpose is to pick off targets at a long range and are horrible in close quarters.`,
+            'LMG': `LMGs are heavy and have decent recoil, but it's better off using an assault rifle.`,
+            'misc': `weapons that dont fit into any other category.`,
+            'information': `landing page of the site.`,
+            'nothing_important': `list of things i gotta do.`,
+            'progress': `timeline & progress.`
+        },
+        this: {
+            'assault_rifle': `stats for assault rifles`,
+            'shotgun': `shotgun stats and info.`,
+            'dmr': `DMR stats and info.`,
+            'smg': `SMG stats and info.`,
+            'sniper': `sniper stats and info.`,
+            'LMG': `LMG stats and info.`,
+            'misc': `misc items in Town.`,
+            'information': `homepage`,
+            'nothing_important': `to-do`,
+            'progress': `timeline n progress.`
+        },
+        information: {
+            'assault_rifle': `all rounder`,
+            'shotgun': `shotguns are good for short range (mid range if u have the right attachments).`,
+            'dmr': `some DMRs are gamepass only.`,
+            'smg': `SMGs fit close-range playstyles.`,
+            'sniper': `snipers are best for long-range engagements.`,
+            'LMG': `LMGs are eh`,
+            'misc': `misc`,
+            'information': `dm me on discord if theres out of date information or things you wanna add to the site that i missed`,
+            'nothing_important': `need me to add something?`,
+            'progress': `you dont need to view this but you can`
+        }
+    };
+
+    // helper: fallback to default if not set
+    function getTocText(type, category) {
+        return (TOC_TEXTS[type] && TOC_TEXTS[type][category]) || `(${type} content not set for ${categoryLabel(category)})`;
+    }
+
+    // transition and content update
+    function updateTocContent(tocType, category) {
+        const tocContent = document.getElementById('toc-content');
+        tocContent.classList.add('fade');
+        setTimeout(() => {
+            tocContent.innerHTML = getTocText(tocType, category);
+            tocContent.classList.remove('fade');
+        }, 200);
+    }
+
+    // set default on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        updateTocContent('about', currentCategory || "information");
+    });
+
+    // listen for ToC link clicks (deselect if already active)
+    document.getElementById('toc-list').addEventListener('click', function(e) {
+        const link = e.target.closest('.toc-link');
+        if (!link) return;
+        e.preventDefault();
+
+        // de-select if already active
+        if (link.classList.contains('active')) {
+            link.classList.remove('active');
+            document.getElementById('toc-content').innerHTML = '';
+            return;
+        }
+
+        document.querySelectorAll('.toc-link').forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+        const tocType = link.getAttribute('data-toc');
+        updateTocContent(tocType, currentCategory || "information");
+    });
     </script>
+
+
+<style>
+.category-dropdowns{margin:16px 0 32px;}
+.dropdown-block{margin-bottom:12px;background:#1a1a1a;border:1px solid #333;
+border-radius:6px;padding:8px 12px;color:#e6e6e6;cursor:pointer;}
+.dropdown-block summary{font-weight:600;font-size:15px;outline:none;}
+.dropdown-content{margin-top:8px;font-size:14px;color:#999;}
+</style>
 </body>
 </html>
